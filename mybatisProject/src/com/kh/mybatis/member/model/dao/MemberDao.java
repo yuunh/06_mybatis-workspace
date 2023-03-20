@@ -27,7 +27,7 @@ public class MemberDao {
 	 */
 
 	/*
-	 * sqlSession에서 제공하는 메소드를 통해서 sql문 찾아서 실행하고 결과 바로 받으
+	 * sqlSession에서 제공하는 메소드를 통해서 sql문 찾아서 실행하고 결과 바로 받음
 	 * 
 	 * 결과 = sqlSession.sql문 종류에 맞는 메소드("메퍼의 별칭.쿼리아이디", [미완성된sql완성시킬객체])
 	 */
