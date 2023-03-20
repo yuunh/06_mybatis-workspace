@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<!-- namespace : 해당 mapper 파일의 고유한 별칭 -->
+	
+	<!-- 
+		* DML문
+		<insert|update|delete id="각 sql 식별자" parameterType="전달받은 자바타입(vo일 경우 = 풀클래스명 | 별칭)">
+		
+		</insert|update|delete>
+		// DML문 같은 경우 어차피 실향 결과가 처리된 행수(int)
+		=> 따라서 resultType, resultMap에 대한 속성은 안 써도 됨
+		
+		* SELECT문
+		<select id="각 sql 식별자" [parameterType="전달받은 자바타입(vo일 경우 = 풀클래스명 | 별칭)"
+								 resultType|resultMap="결과반환타입"]
+								 
+		얘는 실행했을 때의 결과가 매번 달라짐..
+		count(*) => 전체행수 : int
+		USER_NAME => 이름 : String
+		한 행 조회 => 멤버객체
+		여러행 조회 => ArrayList
+		
+		? 대신에 해당 sql문에 전달된 객체로부터 값을 꺼낼때 #{필드명 또는 변수명 또는 키값}
+		
+		</select>
+	 -->
+	 
+	 <!-- 
+	 	* resultMap 마이바티스의 핵심 기능 중 하나!!
+	 	  ResultSet으로부터 조회된 컬럼값 하나씩 뽑아서 내가 지정한 vo객체에 각 필드에 담는(매핑) JDBC 코드를 줄여주는 역할 수행
+	 	  
+	 	  <resultMap id="식별자" type="조회 결과를 담아서 반환하고자 하는 vo객체의 타입">
+	 	  		<result column(db꺼)="조회 결과를 뽑고자 하는 db컬럼명" property(java꺼)="해당 결과를 담고자 하는 필드명"/>
+	 	  		<result column(db꺼)="조회 결과를 뽑고자 하는 db컬럼명" property(java꺼)="해당 결과를 담고자 하는 필드명"/>
+	 	  		<result column(db꺼)="조회 결과를 뽑고자 하는 db컬럼명" property(java꺼)="해당 결과를 담고자 하는 필드명"/>
+	 	  </resultMap
+	  -->
+	 
+	 <select id="loginMember" parameterType="Member" resultMap="">
+	 select
+	        user_no
+	      , user_id
+	      , user_pwd
+	      , email
+	      , birthday
+	      , gender
+	      , phone
+          , address
+	      , enroll_date
+ 	      , modify_date
+          , status
+       from member
+      where user_id = ?
+	    and user_pwd = ?
+	    and status = 'Y'
+	 </select>
+	 
+	 <!-- <insert id="insertMember" parameterType="com.kh.mybatis.member.model.vo.Member"> -->
+	 <insert id="insertMember" parameterType="Member">
+	 insert
+	   into member
+	   (
+	        user_no
+	      , user_id
+	      , user_pwd
+	      , user_name
+	      , email
+	      , birthday
+	      , gender
+	      , phone
+	      , address
+	   )
+	   values
+	   (
+	        seq_uno.nextval
+	      , #{ userId }
+	      , #{ userPwd }
+	      , #{ userName }
+	      , #{ email }
+	      , #{ birthday }
+	      , #{ gender }
+	      , #{ phone }
+	      , #{ address }
+	   )
+	 </insert>
+</mapper>
