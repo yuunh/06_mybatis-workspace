@@ -39,11 +39,27 @@
 	 	  </resultMap
 	  -->
 	 
-	 <select id="loginMember" parameterType="Member" resultMap="">
+	 <resultMap type="Member" id="memberResultSet">
+	 	<result column="user_no" property="userNo"/>
+	 	<result column="user_id" property="userId"/>
+	 	<result column="user_pwd" property="userPwd"/>
+	 	<result column="user_name" property="userName"/>
+	 	<result column="email" property="email"/>
+	 	<result column="birthday" property="birthday"/>
+	 	<result column="gender" property="gender"/>
+	 	<result column="phone" property="phone"/>
+	 	<result column="address" property="address"/>
+	 	<result column="enroll_date" property="enrollDate"/>
+	 	<result column="modify_date" property="modifyDate"/>
+	 	<result column="status" property="status"/>
+	 </resultMap>
+	 
+	 <select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 	 select
 	        user_no
 	      , user_id
 	      , user_pwd
+	      , user_name
 	      , email
 	      , birthday
 	      , gender
@@ -53,8 +69,8 @@
  	      , modify_date
           , status
        from member
-      where user_id = ?
-	    and user_pwd = ?
+      where user_id = #{ userId }
+	    and user_pwd = #{ userPwd }
 	    and status = 'Y'
 	 </select>
 	 

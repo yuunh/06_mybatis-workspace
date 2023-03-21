@@ -84,12 +84,12 @@
 		            <table>
 		                <tr>
 		                    <td colspan="2">
-		                        <h3>xxx님 환영합니다.</h3>
+		                        <h3>${ loginUser.userName }님 환영합니다.</h3>
 		                    </td>
 		                </tr>
 		                <tr>
 		                    <td><a href="#">마이페이지</a></td>
-		                    <td><a href="#">로그아웃</a></td>
+		                    <td><a href="logout.me">로그아웃</a></td>
 		                </tr>
 		            </table>
 		        </div>
@@ -102,7 +102,7 @@
     <div class="nav-area" align="center">
         <div class="menu">Home</div>
         <div class="menu">공지사항</div>
-        <div class="menu">게시판</div>
+        <div class="menu" onclick="location.href='list.bo?cpage=1'">게시판</div>
         <div class="menu">ETC</div>
     </div>
 
