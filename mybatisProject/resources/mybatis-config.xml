@@ -13,6 +13,7 @@
 	<typeAliases>
 		<typeAlias type="com.kh.mybatis.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.mybatis.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.mybatis.board.model.vo.Reply" alias="Reply"/>
 	</typeAliases>
 	
 	<!-- environment : mybatis에서 연동할 DB 정보들을 등록하는 영역 / 예전에 driver.properties에서 썻던 것들 / 디비 여러 개도 등록 가능 -->
